@@ -1,54 +1,70 @@
-import React from "react";
-import { Button, Row, Col, Divider } from "antd";
+import { Button } from "antd";
 import Card from "antd/es/card/Card";
+import { useState } from "react";
+import FooterNav from "./FooterNav.tsx";
 
-const Home: React.FC = () => {
-  const upcomingMatches = [
-    { id: 1, teams: "India vs Pakistan", time: "Aug 3, 7:00 PM IST" },
-    { id: 2, teams: "India vs Australia", time: "Aug 6, 6:00 PM IST" },
-    { id: 3, teams: "India vs Sri Lanka", time: "Aug 10, 6:30 PM IST" },
-  ];
+const liveMatches = [
+  { id: 1, teamA: "India", teamB: "Australia", score: "132/2 (15.3)", status: "Live" },
+  { id: 2, teamA: "England", teamB: "Pakistan", score: "98/4 (13.0)", status: "Live" },
+];
 
-  const liveMatch = {
-    teams: "India vs England",
-    score: "India 152/3 (15.4 overs)",
-    status: "Live Now",
-  };
+const upcomingMatches = [
+  { id: 3, teamA: "India", teamB: "South Africa", time: "Today, 7:00 PM" },
+  { id: 4, teamA: "Sri Lanka", teamB: "New Zealand", time: "Tomorrow, 3:30 PM" },
+];
+
+const Home = () => {
+  const [selectedMatch, setSelectedMatch] = useState(null);
 
   return (
-    <div className="p-4 space-y-8">
-      <h1 className="text-3xl font-bold text-center text-blue-700">🏏 Live Cricket Betting</h1>
-
-      {/* Current Live Match */}
-      <Card
-        title={<span className="text-xl font-semibold">{liveMatch.teams}</span>}
-        bordered={false}
-        className="rounded-2xl shadow-md bg-white"
-      >
-        <p className="text-lg font-medium">{liveMatch.score}</p>
-        <p className="text-green-600 font-semibold">{liveMatch.status}</p>
-
-        <Divider className="border-gray-300" />
-        <div className="flex justify-around items-center">
-          <Button type="primary" size="large" className="rounded-xl px-8">Bet on India</Button>
-          <Button size="large" className="rounded-xl px-8">Bet on England</Button>
-        </div>
-      </Card>
-
-      {/* Upcoming Matches */}
-      <div>
-        <h2 className="text-2xl font-semibold mb-4">📅 Upcoming Matches</h2>
-        <Row gutter={[16, 16]}>
-          {upcomingMatches.map(match => (
-            <Col xs={24} sm={12} md={8} key={match.id}>
-              <Card className="rounded-xl shadow bg-gray-50 hover:shadow-lg cursor-pointer transition">
-                <p className="font-bold text-lg">{match.teams}</p>
-                <p className="text-gray-600">{match.time}</p>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+    <div className="text-white mx-auto bg-bg1">
+      <h2 className="text-white text-xl font-semibold mb-4 pt-3 px-4">🏏 Live Matches</h2>
+      <div className="space-y-4 p-4">
+        {liveMatches.map((match) => (
+          <Card
+            key={match.id}
+            className="bg-[#1a1a1a] text-white rounded-xl"
+            onClick={() => setSelectedMatch(match)}
+          >
+            <div className="flex justify-between items-center">
+              <div>
+                <div className="font-bold text-lg">{match.teamA} vs {match.teamB}</div>
+                <div className="text-sm text-gray-400">{match.score}</div>
+              </div>
+              <div className="space-x-2">
+                <Button type="primary" className="bg-green-500 rounded-full">Bet {match.teamA}</Button>
+                <Button type="primary" className="bg-red-500 rounded-full">Bet {match.teamB}</Button>
+              </div>
+            </div>
+          </Card>
+        ))}
       </div>
+
+      <h2 className="text-xl font-semibold my-6 px-4">📅 Upcoming Matches</h2>
+      <div className="space-y-4 p-4">
+        {upcomingMatches.map((match) => (
+          <Card key={match.id} className="bg-[#1a1a1a] text-white rounded-xl">
+            <div className="flex justify-between items-center">
+              <div>
+                <div className="font-bold text-lg">{match.teamA} vs {match.teamB}</div>
+                <div className="text-sm text-gray-400">{match.time}</div>
+              </div>
+              <Button type="default" className="rounded-full text-white border-white hover:bg-white hover:text-black">
+                Set Reminder
+              </Button>
+            </div>
+          </Card>
+        ))}
+      </div>
+
+      {selectedMatch && (
+        <div className="mt-8 bg-[#111] p-4 rounded-lg">
+          <h3 className="text-lg font-bold mb-2">Match Details</h3>
+          <p>{selectedMatch.teamA} vs {selectedMatch.teamB}</p>
+          <p className="text-sm text-gray-400">Live Score: {selectedMatch.score}</p>
+        </div>
+      )}
+      <FooterNav/>
     </div>
   );
 };
