@@ -1,11 +1,10 @@
-import React from "react";
 import { Button, Layout } from "antd";
 import { useAuth } from "../contexts/AuthContext.tsx";
 import { useNavigate } from "react-router-dom";
 import logo from '../assets/logo/logo.png'
 import { BiLogOut } from "react-icons/bi";
 
-const Navbar: any = () => {
+const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
