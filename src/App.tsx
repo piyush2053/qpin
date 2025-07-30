@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import Profile from "./pages/Profile.tsx";
 import LiveBet from "./pages/LiveBet.tsx";
 import Navbar from "./components/Navbar.tsx";
+import Casino from "./pages/Casino.tsx";
 
 const App = () => {
   return (
@@ -20,13 +21,14 @@ const App = () => {
                 path="/"
                 element={
                   <ProtectedRoute>
-                    <Navbar/>
+                    <Navbar />
                     <Home />
                   </ProtectedRoute>
                 }
               />
-              <Route path="/live" element={<ProtectedRoute><Navbar/><LiveBet /></ProtectedRoute>} />
-              <Route path="/profile" element={<ProtectedRoute><Navbar/><Profile /></ProtectedRoute>} />
+              <Route path="/live" element={<ProtectedRoute><Navbar /><LiveBet /></ProtectedRoute>} />
+              <Route path="/profile" element={<ProtectedRoute><Navbar /><Profile /></ProtectedRoute>} />
+              <Route path="/casino" element={<ProtectedRoute><Navbar /><Casino /></ProtectedRoute>} />
             </Routes>
           </Layout.Content>
         </Layout>

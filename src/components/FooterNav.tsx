@@ -1,4 +1,4 @@
-import { FaSuitcase, FaUser } from "react-icons/fa";
+import { FaDice, FaSuitcase, FaUser } from "react-icons/fa";
 import { IoMdHome } from "react-icons/io";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -19,6 +19,12 @@ const FooterNav = () => {
         className={`text-xl cursor-pointer ${location.pathname === "/live" ? "text-pBlue" : ""}`}
       >
         <FaSuitcase />
+      </span>
+      <span
+        onClick={() => navigate("/casino")}
+        className={`text-xl cursor-pointer ${location.pathname === "/casino" ? "text-pBlue" : ""}`}
+      >
+        <FaDice />
       </span>
       <span
         onClick={() => navigate("/profile")}

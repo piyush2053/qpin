@@ -15,7 +15,7 @@ const Navbar = () => {
         <img alt='logo' src={logo} className="h-6 rounded-full"/>
         <p>{CNAME}</p>
         <p className="bg-bg2 border-none text-white text-xs my-auto p-2 rounded-lg" onClick={() => { logout(); navigate("/login"); }}>
-          Opinion Trading
+          ₹ 1,250
         </p>
       </div>
       {isAuthenticated && (
