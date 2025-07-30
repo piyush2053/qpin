@@ -3,6 +3,7 @@ import { useAuth } from "../contexts/AuthContext.tsx";
 import { useNavigate } from "react-router-dom";
 import logo from '../assets/logo/logo.png'
 import { BiLogOut } from "react-icons/bi";
+import { CNAME } from "../utils/constants.ts";
 
 const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
@@ -12,7 +13,7 @@ const Navbar = () => {
     <Layout.Header className="flex justify-between items-center bg-bg1 text-white px-2 shadow-gray-800 shadow-sm animate-fade">
       <div className="flex flex-grow text-xl font-bold cursor-pointer gap-2" onClick={() => navigate("/")}>
         <img alt='logo' src={logo} className="h-6 rounded-full"/>
-        <p>qPin</p>
+        <p>{CNAME}</p>
         <p className="bg-bg2 border-none text-white text-xs my-auto p-2 rounded-lg" onClick={() => { logout(); navigate("/login"); }}>
           Opinion Trading
         </p>

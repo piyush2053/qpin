@@ -9,6 +9,7 @@ module.exports = {
       colors: {
         bg1: "#030712",
         bg2: "#1D202A",
+        bg3: "#282c34",
         pBlue: "#2196F3"
       },
       animation: {

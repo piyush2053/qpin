@@ -5,6 +5,7 @@ import logo from '../assets/logo/logo.png';
 import { useAuth } from "../contexts/AuthContext.tsx";
 import Loader from "../components/Loader.tsx";
 import { useState } from "react";
+import { CNAME } from "../utils/constants.ts";
 
 const Login = () => {
   const navigate = useNavigate()
@@ -28,7 +29,7 @@ const Login = () => {
       )}
 
       <img src={logo} alt="logo" className="h-10 mb-2 rounded-full" />
-      <h1 className="text-3xl font-bold mb-3">qPin</h1>
+      <h1 className="text-3xl font-bold mb-3">{CNAME}</h1>
 
       <div className="w-full max-w-xs">
         <Input
@@ -53,6 +54,10 @@ const Login = () => {
           className="bg-pBlue min-w-full rounded-full border-none text-white"
           disabled={loading}
         >Sign-In</Button>
+
+        <p className="text-xs text-gray-500 text-center mt-8">
+          © {CNAME} {new Date().getFullYear()} &nbsp;|&nbsp; Play at your own risk. It’s addictive. Subject to risks.
+        </p>
       </div>
     </div>
   );
