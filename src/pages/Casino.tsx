@@ -78,7 +78,7 @@ const Casino = () => {
                   }`}
               >
                 <div>{name}</div>
-                {prize ? <div className="text-[10px] font-normal mt-1">₹{prize}</div>: <div className="text-[9px] bg-red-300 rounded-xl text-red-900 px-2">Lost</div>}
+                {prize && <div className="text-[10px] font-normal mt-1">₹{prize}</div>}
               </motion.div>
             );
           })}
