@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Input } from "antd";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../contexts/AuthContext.tsx";
 import { useNavigate } from "react-router-dom";
 import Card from "antd/es/card/Card";
 

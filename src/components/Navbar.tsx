@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Layout } from "antd";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../contexts/AuthContext.tsx";
 import { useNavigate } from "react-router-dom";
 
 const Navbar: React.FC = () => {
@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
   return (
     <Layout.Header className="flex justify-between items-center bg-blue-700 text-white px-4">
       <div className="text-xl font-bold cursor-pointer" onClick={() => navigate("/")}>
-        Betting App
+        qPin
       </div>
       {isAuthenticated && (
         <Button type="primary" danger onClick={() => { logout(); navigate("/login"); }}>
