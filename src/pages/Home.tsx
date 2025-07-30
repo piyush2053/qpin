@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import Card from "antd/es/card/Card";
 import { useState } from "react";
-import FooterNav from "./FooterNav.tsx";
+import FooterNav from "../components/FooterNav.tsx";
 import SpaceConsolidation from '../components/SpaceAdjust.tsx'
 const liveMatches = [
   { id: 1, teamA: "India", teamB: "Australia", score: "132/2 (15.3)", status: "Live" },
@@ -17,7 +17,7 @@ const Home = () => {
   const [selectedMatch, setSelectedMatch] = useState(null);
 
   return (
-    <div className="text-white mx-auto bg-bg1">
+    <div className="text-white mx-auto bg-bg1 animate-fade">
       <h2 className="text-white text-xl font-semibold mb-2 pt-3 px-4">🏏 Live Matches</h2>
       <div className="space-y-4 p-4">
         {liveMatches.map((match) => (

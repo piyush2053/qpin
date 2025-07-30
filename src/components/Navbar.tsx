@@ -9,7 +9,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-    <Layout.Header className="flex justify-between items-center bg-bg1 text-white px-2 shadow-gray-800 shadow-sm">
+    <Layout.Header className="flex justify-between items-center bg-bg1 text-white px-2 shadow-gray-800 shadow-sm animate-fade">
       <div className="flex flex-grow text-xl font-bold cursor-pointer gap-2" onClick={() => navigate("/")}>
         <img alt='logo' src={logo} className="h-6 rounded-full"/>
         <p>qPin</p>
