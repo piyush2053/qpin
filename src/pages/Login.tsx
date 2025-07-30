@@ -1,7 +1,8 @@
 import React from "react";
-import { Button, Card, Input } from "antd";
+import { Button, Input } from "antd";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Card from "antd/es/card/Card";
 
 const Login: React.FC = () => {
   const { login } = useAuth();
