@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import FooterNav from "../components/FooterNav.tsx";
 import { Button } from "antd";
 import { motion } from "framer-motion";
+import rollingSound from "../assets/sounds/rolling.mp3";
+import win from "../assets/sounds/win.mp3";
 
 const participants = [
   "Aniket", "Apoorv", "Karan", "Sneh", "Aviral",
@@ -19,18 +21,34 @@ const Casino = () => {
   const [isSpinning, setIsSpinning] = useState(false);
   const [winners, setWinners] = useState(null);
   const [rotation, setRotation] = useState(0);
+  const audioRef: any = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio(rollingSound);
+    audioRef.current1 = new Audio(win);
+    audioRef.current.volume = 0.3;
+    audioRef.current1.volume = 0.2;
+  }, []);
 
   const startSpin = () => {
     if (isSpinning) return;
     setIsSpinning(true);
     setWinners(null);
-
-    const newRotation = rotation + 1440 + Math.floor(Math.random() * 360); // 4 full rotations + random
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
+    const newRotation = rotation + 1440 + Math.floor(Math.random() * 360);
     setRotation(newRotation);
 
     setTimeout(() => {
       const win = getWinners();
       setWinners(win);
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        audioRef.current1.play()
+      }
       setIsSpinning(false);
     }, 3000);
   };
@@ -71,10 +89,10 @@ const Casino = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.1 * index }}
                 className={`w-20 h-20 flex flex-col items-center justify-center rounded-full text-xs font-semibold shadow-md px-1 ${isWinner !== undefined
-                    ? isWinner
-                      ? "bg-green-600 text-white"
-                      : "bg-red-600 text-white"
-                    : "bg-gray-700 text-gray-200"
+                  ? isWinner
+                    ? "bg-green-600 text-white"
+                    : "bg-red-600 text-white"
+                  : "bg-gray-700 text-gray-200"
                   }`}
               >
                 <div>{name}</div>
