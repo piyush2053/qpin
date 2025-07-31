@@ -51,7 +51,7 @@ const LiveBet = () => {
                   date: "2024-07-10",
                   event: "South Africa vs. Pakistan",
                   amount: "$75",
-                  status: "Pending",
+                  status: "Lost",
                 },
                 {
                   date: "2024-07-05",
