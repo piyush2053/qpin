@@ -13,24 +13,28 @@ const FooterNav = () => {
         className={`text-xl cursor-pointer ${location.pathname === "/" ? "text-pBlue" : ""}`}
       >
         <IoMdHome />
+        <p className="text-xs">Home</p>
       </span>
       <span
         onClick={() => navigate("/live")}
         className={`text-xl cursor-pointer ${location.pathname === "/live" ? "text-pBlue" : ""}`}
       >
         <FaSuitcase />
+        <p className="text-xs">My Bets</p>
       </span>
       <span
         onClick={() => navigate("/casino")}
         className={`text-xl cursor-pointer ${location.pathname === "/casino" ? "text-pBlue" : ""}`}
       >
         <FaDice />
+        <p className="text-xs">Casino</p>
       </span>
       <span
         onClick={() => navigate("/profile")}
         className={`text-xl cursor-pointer ${location.pathname === "/profile" ? "text-pBlue" : ""}`}
       >
         <FaUser />
+        <p className="text-xs">Profile</p>
       </span>
     </footer>
   );
