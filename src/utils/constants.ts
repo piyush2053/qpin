@@ -1,1 +1,1 @@
-export const CNAME = 'qPin'
+export const CNAME = 'PredictsPlus'
