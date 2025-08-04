@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 const liveMatches = [
   { id: 1, teamA: "India", teamB: "Australia", score: "132/2 (15.3)", status: "Live" },
   { id: 2, teamA: "England", teamB: "Pakistan", score: "98/4 (13.0)", status: "Live" },
+  { id: 2, teamA: "New Zealand", teamB: "West Indies", score: "22/4 (12.0)", status: "Stopped Due to Rain" },
 ];
 
 const upcomingMatches = [
@@ -32,59 +33,56 @@ const Home = () => {
   }
   return (
     <div className="text-white mx-auto bg-bg1 animate-fade">
-      <h2 className="text-white text-xl font-semibold mb-2 pt-3 px-4">🏏 Live Matches</h2>
-      <div className="space-y-4 p-4">
-        {liveMatches.map((match) => (
-          <Card
-            key={match.id}
-            className="bg-white/10 backdrop-blur-md border border-white/20 shadow-md text-white rounded-xl"
-            onClick={() => setSelectedMatch(match)}
-          >
-            <div>
+      <section className="pt-4 m-4">
+        <h2 className="text-xl md:text-2xl font-semibold mb-2">🏏 Live Matches</h2>
+        <div className="grid gap-4 md:grid-cols-2">
+          {liveMatches.map((match) => (
+            <Card
+              key={match.id}
+              className="bg-white/10 backdrop-blur-md border border-white/20 shadow-md text-white rounded-xl cursor-pointer"
+              onClick={() => setSelectedMatch(match)}
+            >
               <div className="flex justify-between items-center mb-2">
                 <div>
                   <div className="font-bold text-lg">{match.teamA} vs {match.teamB}</div>
                   <div className="text-sm text-gray-400">{match.score}</div>
-                  <span className="text-xs text-green-400">Live</span>
+                  <span className={`text-xs ${match?.status === 'Live' ? 'text-green-400' : 'text-orange-500'}`}>{match?.status}</span>
                 </div>
-                <div className="flex mt-2">
-                  <Button
-                    type="primary"
-                    className="bg-pBlue rounded-full"
-                    onClick={() => {
-                      setSelectedMatch(match);
-                      setShowBetPopup(true);
-                    }}
-                  >
-                    Place Bet
-                  </Button>
-                </div>
+                <Button
+                  type="primary"
+                  className="bg-pBlue rounded-full"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedMatch(match);
+                    setShowBetPopup(true);
+                  }}
+                >
+                  Place Bet
+                </Button>
               </div>
-            </div>
-          </Card>
-        ))}
-      </div>
+            </Card>
+          ))}
+        </div>
+      </section>
 
-      <h2 className="text-xl font-semibold my-2 px-4">📅 Upcoming Matches</h2>
-      <div className="space-y-4 p-4">
-        {upcomingMatches.map((match) => (
-          <Card key={match.id} className="bg-white/10 backdrop-blur-md border border-white/20 shadow-md text-white rounded-xl">
-            <div>
+      <section className="mt-6 m-4">
+        <h2 className="text-xl md:text-2xl font-semibold mb-2">📅 Upcoming Matches</h2>
+        <div className="grid gap-4 md:grid-cols-2">
+          {upcomingMatches.map((match) => (
+            <Card key={match.id} className="bg-white/10 backdrop-blur-md border border-white/20 shadow-md text-white rounded-xl">
               <div className="flex justify-between items-center mb-2">
                 <div>
                   <div className="font-bold text-lg">{match.teamA} vs {match.teamB}</div>
                   <div className="text-sm text-gray-400">{match.time}</div>
                 </div>
-              </div>
-              <div>
                 <Button type="default" className="rounded-full bg-pBlue text-white">
                   Set Reminder
                 </Button>
               </div>
-            </div>
-          </Card>
-        ))}
-      </div>
+            </Card>
+          ))}
+        </div>
+      </section>
 
       {selectedMatch && (
         <div className="mt-8 bg-[#111] p-4 rounded-lg">
@@ -93,21 +91,21 @@ const Home = () => {
           <p className="text-sm text-gray-400">Live Score: {selectedMatch.score}</p>
         </div>
       )}
-      <div className="px-4 mt-6">
-        <h2 className="text-xl font-semibold my-2">🎰 Casino Highlights</h2>
-        <div className="flex gap-4 overflow-x-auto pb-2">
+      <section className="mt-6 m-4">
+        <h2 className="text-xl md:text-2xl font-semibold mb-2">🎰 Casino Highlights</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
           {casinoHighlights.map((casino) => (
             <div
               key={casino.id}
-              className="min-w-[150px] w-[200px] bg-white/10 rounded-xl overflow-hidden shadow-md transition duration-300 transform hover:scale-110 hover:-translate-y-1 hover:z-20 hover:cursor-pointer"
+              className="bg-white/10 rounded-xl overflow-hidden shadow-md transition duration-300 transform hover:scale-105 hover:cursor-pointer"
               onClick={navigateToCasino}
             >
               <img src={casino.image} alt={casino.title} className="h-28 w-full object-cover" />
-              <div className="p-2 text-sm font-medium flex justify-center">{casino.title}</div>
+              <div className="p-2 text-sm font-medium text-center">{casino.title}</div>
             </div>
           ))}
         </div>
-      </div>
+      </section>
       <SpaceConsolidation />
       <FooterNav />
       <AnimatePresence>

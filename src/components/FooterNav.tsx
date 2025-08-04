@@ -10,7 +10,7 @@ const FooterNav = () => {
     <footer className="fixed bottom-0 w-full mx-auto bg-[#1a1a1a] p-2 flex justify-around rounded-t-xl text-white z-50">
       <span
         onClick={() => navigate("/")}
-        className={`text-xl cursor-pointer ${location.pathname === "/" ? "text-pBlue" : ""}`}
+        className={`text-xl cursor-pointer flex-col justify-center ${location.pathname === "/" ? "text-pBlue" : ""}`}
       >
         <IoMdHome />
         <p className="text-xs">Home</p>

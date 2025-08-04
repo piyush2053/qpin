@@ -20,8 +20,21 @@ const BetPopup = ({ match, onClose }: { match: any; onClose: () => void }) => {
     if (!match) return null;
 
     const handleAmountChange = (delta: number) => {
-        setAmount((prev) => Math.max(0, prev + delta));
+        setAmount((prev) => {
+            const updated = prev + delta;
+            if (updated < 0) return 0;
+            if (updated > balance) return balance;
+            return updated;
+        });
     };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = Number(e.target.value);
+        if (value <= balance) {
+            setAmount(value >= 0 ? value : 0);
+        }
+    };
+
 
     const getOdds = (team: string) => {
         return team === match.teamA ? 1.85 : 2.1;
@@ -97,14 +110,16 @@ const BetPopup = ({ match, onClose }: { match: any; onClose: () => void }) => {
                                 <Button onClick={() => handleAmountChange(-100)} className="bg-white/10 border-none text-white">-</Button>
                                 <Input
                                     value={amount}
-                                    onChange={(e) => setAmount(Number(e.target.value) || 0)}
+                                    onChange={handleInputChange}
                                     type="number"
                                     min={0}
+                                    max={balance}
                                     className="w-24 text-center bg-white/10 text-white border-none hover:bg-white/10 focus:!bg-white/10 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                     style={{ MozAppearance: 'textfield' }}
                                 />
                                 <Button onClick={() => handleAmountChange(100)} className="bg-white/10 border-none text-white">+</Button>
                             </div>
+
                         </div>
                         <div className="mt-4 text-green-400 font-medium text-sm">
                             Potential Win: ₹{(amount * getOdds(selected)).toFixed(2)}

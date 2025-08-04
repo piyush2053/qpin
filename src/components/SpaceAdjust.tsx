@@ -1,6 +1,6 @@
 const SpaceConsolidation = () => {
   return (
-    <div className="h-[40px]"></div>
+    <div className="h-[45px]"></div>
   );
 }
 
