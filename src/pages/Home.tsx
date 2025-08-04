@@ -3,6 +3,8 @@ import Card from "antd/es/card/Card";
 import { useState } from "react";
 import FooterNav from "../components/FooterNav.tsx";
 import SpaceConsolidation from '../components/SpaceAdjust.tsx'
+import BetPopup from "../components/BetPopup.tsx";
+import { AnimatePresence } from "framer-motion";
 const liveMatches = [
   { id: 1, teamA: "India", teamB: "Australia", score: "132/2 (15.3)", status: "Live" },
   { id: 2, teamA: "England", teamB: "Pakistan", score: "98/4 (13.0)", status: "Live" },
@@ -15,7 +17,7 @@ const upcomingMatches = [
 
 const Home = () => {
   const [selectedMatch, setSelectedMatch] = useState(null);
-
+  const [showBetPopup, setShowBetPopup] = useState(false);
   return (
     <div className="text-white mx-auto bg-bg1 animate-fade">
       <h2 className="text-white text-xl font-semibold mb-2 pt-3 px-4">🏏 Live Matches</h2>
@@ -32,10 +34,18 @@ const Home = () => {
                   <div className="font-bold text-lg">{match.teamA} vs {match.teamB}</div>
                   <div className="text-sm text-gray-400">{match.score}</div>
                 </div>
-              </div>
-              <div className="flex flex-grow space-x-2 ">
-                <Button type="primary" className="bg-pBlue rounded-full">Bet {match.teamA}</Button>
-                <Button type="primary" className="bg-pBlue rounded-full">Bet {match.teamB}</Button>
+                <div className="flex mt-2">
+                  <Button
+                    type="primary"
+                    className="bg-pBlue rounded-full"
+                    onClick={() => {
+                      setSelectedMatch(match);
+                      setShowBetPopup(true);
+                    }}
+                  >
+                    Place Bet
+                  </Button>
+                </div>
               </div>
             </div>
           </Card>
@@ -72,6 +82,14 @@ const Home = () => {
       )}
       <SpaceConsolidation />
       <FooterNav />
+      <AnimatePresence>
+        {showBetPopup && (
+          <BetPopup
+            match={selectedMatch}
+            onClose={() => setShowBetPopup(false)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };
