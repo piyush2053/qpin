@@ -1,7 +1,7 @@
 import { Button, Input } from "antd";
 import { MailOutlined, LockOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import logo from '../assets/logo/logo.png';
+import logo from '../assets/gifs/predictplus.gif';
 import { useAuth } from "../contexts/AuthContext.tsx";
 import Loader from "../components/Loader.tsx";
 import { useState } from "react";
@@ -28,9 +28,7 @@ const Login = () => {
         </div>
       )}
 
-      <img src={logo} alt="logo" className="h-10 mb-2 rounded-full" />
-      <h1 className="text-3xl font-bold mb-3">{CNAME}</h1>
-
+      <img src={logo} alt="logo" className="h-10 mb-5" />
       <div className="w-full max-w-xs">
         <Input
           size="large"

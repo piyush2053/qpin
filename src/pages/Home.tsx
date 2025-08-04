@@ -75,7 +75,7 @@ const Home = () => {
                   <div className="font-bold text-lg">{match.teamA} vs {match.teamB}</div>
                   <div className="text-sm text-gray-400">{match.time}</div>
                 </div>
-                <Button type="default" className="rounded-full bg-pBlue text-white">
+                <Button type="default" className="rounded-full bg-pBlue border-none text-white">
                   Set Reminder
                 </Button>
               </div>
