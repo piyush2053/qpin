@@ -8,6 +8,7 @@ import Profile from "./pages/Profile.tsx";
 import LiveBet from "./pages/LiveBet.tsx";
 import Navbar from "./components/Navbar.tsx";
 import Casino from "./pages/Casino.tsx";
+import Register from "./pages/Register.tsx";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
               <Route path="/live" element={<ProtectedRoute><Navbar /><LiveBet /></ProtectedRoute>} />
               <Route path="/profile" element={<ProtectedRoute><Navbar /><Profile /></ProtectedRoute>} />
               <Route path="/casino" element={<ProtectedRoute><Navbar /><Casino /></ProtectedRoute>} />
+              <Route path="/register" element={<Register />} />
             </Routes>
           </Layout.Content>
         </Layout>

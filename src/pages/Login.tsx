@@ -44,8 +44,14 @@ const Login = () => {
           placeholder="Enter your password"
           className="mb-6 rounded-full bg-bg2 text-gray-600 border-gray-700"
         />
-        <div className="flex justify-center mb-6 text-sm text-gray-400 hover:underline cursor-pointer">
+        <div className="flex justify-center mb-1 text-sm text-gray-400 hover:underline cursor-pointer">
           Need help?
+        </div>
+        <div
+          className="flex justify-center mb-6 text-gray-400 hover:underline cursor-pointer"
+          onClick={() => navigate("/register")}
+        >
+          Don't have an account? Register
         </div>
         <Button
           icon={<ArrowRightOutlined />}
